@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Dominic Bartel\c-module-3-capstone-team-6\NPGeek.Web\Models\ParkSystemModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\John Kenny\Capstone\c-module-3-capstone-team-6\NPGeek.Web\Models\ParkSystemModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
