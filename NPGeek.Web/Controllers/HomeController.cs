@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NPGeek.Web.Models;
 
 namespace NPGeek.Web.Controllers
 {
@@ -11,7 +12,12 @@ namespace NPGeek.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            List<park> parks;
+            using (var context = new ParkSystemDatabaseEntities())
+            {
+                parks = context.parks.ToList();
+            }
+                return View(parks);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿
+﻿@model List<NPGeek.Web.Models.park>
 @{
     Layout = null;
 }
@@ -11,7 +11,19 @@
     <title>Index</title>
 </head>
 <body>
-    <div> 
+    <div>
+        <table>
+            @foreach (var park in Model)
+            {
+                <tr>
+                    <td>@park.parkName</td>
+                    <td>@park.state</td>
+                    <td>@park.milesOfTrail</td>
+                    <td>@park.inspirationalQuote</td>
+                    <td>@park.parkDescription</td>
+                </tr>
+            }
+        </table>
     </div>
 </body>
 </html>

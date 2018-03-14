@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ParkSystemDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="park">
+          <Key>
+            <PropertyRef Name="parkCode" />
+          </Key>
+          <Property Name="parkCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="parkName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="state" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="acreage" Type="int" Nullable="false" />
+          <Property Name="elevationInFeet" Type="int" Nullable="false" />
+          <Property Name="milesOfTrail" Type="real" Nullable="false" />
+          <Property Name="numberOfCampsites" Type="int" Nullable="false" />
+          <Property Name="climate" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="yearFounded" Type="int" Nullable="false" />
+          <Property Name="annualVisitorCount" Type="int" Nullable="false" />
+          <Property Name="inspirationalQuote" Type="varchar(max)" Nullable="false" />
+          <Property Name="inspirationalQuoteSource" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="parkDescription" Type="varchar(max)" Nullable="false" />
+          <Property Name="entryFee" Type="int" Nullable="false" />
+          <Property Name="numberOfAnimalSpecies" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="survey_result">
+          <Key>
+            <PropertyRef Name="surveyId" />
+          </Key>
+          <Property Name="surveyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="parkCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="emailAddress" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="state" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="activityLevel" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="weather">
+          <Key>
+            <PropertyRef Name="parkCode" />
+            <PropertyRef Name="fiveDayForecastValue" />
+          </Key>
+          <Property Name="parkCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="fiveDayForecastValue" Type="int" Nullable="false" />
+          <Property Name="low" Type="int" Nullable="false" />
+          <Property Name="high" Type="int" Nullable="false" />
+          <Property Name="forecast" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_survey_result_park">
+          <End Role="park" Type="Self.park" Multiplicity="1" />
+          <End Role="survey_result" Type="Self.survey_result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="park">
+              <PropertyRef Name="parkCode" />
+            </Principal>
+            <Dependent Role="survey_result">
+              <PropertyRef Name="parkCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_weather_park">
+          <End Role="park" Type="Self.park" Multiplicity="1" />
+          <End Role="weather" Type="Self.weather" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="park">
+              <PropertyRef Name="parkCode" />
+            </Principal>
+            <Dependent Role="weather">
+              <PropertyRef Name="parkCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ParkSystemDatabaseModelStoreContainer">
+          <EntitySet Name="park" EntityType="Self.park" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="survey_result" EntityType="Self.survey_result" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="weather" EntityType="Self.weather" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_survey_result_park" Association="Self.fk_survey_result_park">
+            <End Role="park" EntitySet="park" />
+            <End Role="survey_result" EntitySet="survey_result" />
+          </AssociationSet>
+          <AssociationSet Name="fk_weather_park" Association="Self.fk_weather_park">
+            <End Role="park" EntitySet="park" />
+            <End Role="weather" EntitySet="weather" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ParkSystemDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="park">
+          <Key>
+            <PropertyRef Name="parkCode" />
+          </Key>
+          <Property Name="parkCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="parkName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="state" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="acreage" Type="Int32" Nullable="false" />
+          <Property Name="elevationInFeet" Type="Int32" Nullable="false" />
+          <Property Name="milesOfTrail" Type="Single" Nullable="false" />
+          <Property Name="numberOfCampsites" Type="Int32" Nullable="false" />
+          <Property Name="climate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="yearFounded" Type="Int32" Nullable="false" />
+          <Property Name="annualVisitorCount" Type="Int32" Nullable="false" />
+          <Property Name="inspirationalQuote" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="inspirationalQuoteSource" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="parkDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="entryFee" Type="Int32" Nullable="false" />
+          <Property Name="numberOfAnimalSpecies" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="survey_result" Relationship="Self.fk_survey_result_park" FromRole="park" ToRole="survey_result" />
+          <NavigationProperty Name="weathers" Relationship="Self.fk_weather_park" FromRole="park" ToRole="weather" />
+        </EntityType>
+        <EntityType Name="survey_result">
+          <Key>
+            <PropertyRef Name="surveyId" />
+          </Key>
+          <Property Name="surveyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="parkCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="emailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="state" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activityLevel" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="park" Relationship="Self.fk_survey_result_park" FromRole="survey_result" ToRole="park" />
+        </EntityType>
+        <EntityType Name="weather">
+          <Key>
+            <PropertyRef Name="parkCode" />
+            <PropertyRef Name="fiveDayForecastValue" />
+          </Key>
+          <Property Name="parkCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fiveDayForecastValue" Type="Int32" Nullable="false" />
+          <Property Name="low" Type="Int32" Nullable="false" />
+          <Property Name="high" Type="Int32" Nullable="false" />
+          <Property Name="forecast" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="park" Relationship="Self.fk_weather_park" FromRole="weather" ToRole="park" />
+        </EntityType>
+        <Association Name="fk_survey_result_park">
+          <End Role="park" Type="Self.park" Multiplicity="1" />
+          <End Role="survey_result" Type="Self.survey_result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="park">
+              <PropertyRef Name="parkCode" />
+            </Principal>
+            <Dependent Role="survey_result">
+              <PropertyRef Name="parkCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_weather_park">
+          <End Role="park" Type="Self.park" Multiplicity="1" />
+          <End Role="weather" Type="Self.weather" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="park">
+              <PropertyRef Name="parkCode" />
+            </Principal>
+            <Dependent Role="weather">
+              <PropertyRef Name="parkCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ParkSystemDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="parks" EntityType="Self.park" />
+          <EntitySet Name="survey_result" EntityType="Self.survey_result" />
+          <EntitySet Name="weathers" EntityType="Self.weather" />
+          <AssociationSet Name="fk_survey_result_park" Association="Self.fk_survey_result_park">
+            <End Role="park" EntitySet="parks" />
+            <End Role="survey_result" EntitySet="survey_result" />
+          </AssociationSet>
+          <AssociationSet Name="fk_weather_park" Association="Self.fk_weather_park">
+            <End Role="park" EntitySet="parks" />
+            <End Role="weather" EntitySet="weathers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ParkSystemDatabaseModelStoreContainer" CdmEntityContainer="ParkSystemDatabaseEntities">
+          <EntitySetMapping Name="parks">
+            <EntityTypeMapping TypeName="ParkSystemDatabaseModel.park">
+              <MappingFragment StoreEntitySet="park">
+                <ScalarProperty Name="parkCode" ColumnName="parkCode" />
+                <ScalarProperty Name="parkName" ColumnName="parkName" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="acreage" ColumnName="acreage" />
+                <ScalarProperty Name="elevationInFeet" ColumnName="elevationInFeet" />
+                <ScalarProperty Name="milesOfTrail" ColumnName="milesOfTrail" />
+                <ScalarProperty Name="numberOfCampsites" ColumnName="numberOfCampsites" />
+                <ScalarProperty Name="climate" ColumnName="climate" />
+                <ScalarProperty Name="yearFounded" ColumnName="yearFounded" />
+                <ScalarProperty Name="annualVisitorCount" ColumnName="annualVisitorCount" />
+                <ScalarProperty Name="inspirationalQuote" ColumnName="inspirationalQuote" />
+                <ScalarProperty Name="inspirationalQuoteSource" ColumnName="inspirationalQuoteSource" />
+                <ScalarProperty Name="parkDescription" ColumnName="parkDescription" />
+                <ScalarProperty Name="entryFee" ColumnName="entryFee" />
+                <ScalarProperty Name="numberOfAnimalSpecies" ColumnName="numberOfAnimalSpecies" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="survey_result">
+            <EntityTypeMapping TypeName="ParkSystemDatabaseModel.survey_result">
+              <MappingFragment StoreEntitySet="survey_result">
+                <ScalarProperty Name="surveyId" ColumnName="surveyId" />
+                <ScalarProperty Name="parkCode" ColumnName="parkCode" />
+                <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="activityLevel" ColumnName="activityLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="weathers">
+            <EntityTypeMapping TypeName="ParkSystemDatabaseModel.weather">
+              <MappingFragment StoreEntitySet="weather">
+                <ScalarProperty Name="parkCode" ColumnName="parkCode" />
+                <ScalarProperty Name="fiveDayForecastValue" ColumnName="fiveDayForecastValue" />
+                <ScalarProperty Name="low" ColumnName="low" />
+                <ScalarProperty Name="high" ColumnName="high" />
+                <ScalarProperty Name="forecast" ColumnName="forecast" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

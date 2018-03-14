@@ -26,10 +26,10 @@ namespace NPGeek.Web
         {
             var kernel = new StandardKernel();
 
-            string connectionString = ConfigurationManager.ConnectionStrings["ParkSystemDatabaseEntities"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["Entities"].ConnectionString;
 
             // Map Interfaces to Classes
-            kernel.Bind<IParkDAL>().To<ParkSqlDAL>();
+            // kernel.Bind<>().To<>();
 
             return kernel;
         }
