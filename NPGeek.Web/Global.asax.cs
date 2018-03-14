@@ -29,7 +29,7 @@ namespace NPGeek.Web
             string connectionString = ConfigurationManager.ConnectionStrings["ParkSystemDatabaseEntities"].ConnectionString;
 
             // Map Interfaces to Classes
-            //kernel.Bind<interface>().To<class>();
+            kernel.Bind<IParkDAL>().To<ParkSqlDAL>();
 
             return kernel;
         }
