@@ -125,7 +125,7 @@
     <Content Include="Content\img\parks\ynp2.jpg" />
     <Content Include="Content\img\scenery.png" />
     <Content Include="Content\img\weather\cloudy.png" />
-    <Content Include="Content\img\weather\partlyCloudy.png" />
+    <Content Include="Content\img\weather\partly cloudy.png" />
     <Content Include="Content\img\weather\rain.png" />
     <Content Include="Content\img\weather\snow.png" />
     <Content Include="Content\img\weather\sunny.png" />
@@ -174,6 +174,7 @@
     <Compile Include="Models\survey_result.cs">
       <DependentUpon>ParkSystemModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\ParkDetailModel.cs" />
     <Compile Include="Models\weather.cs">
       <DependentUpon>ParkSystemModel.tt</DependentUpon>
     </Compile>

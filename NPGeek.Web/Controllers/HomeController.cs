@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NPGeek.Web.Models;
+using NPGeek.Web.Models.ViewModels;
 
 namespace NPGeek.Web.Controllers
 {
@@ -22,10 +23,11 @@ namespace NPGeek.Web.Controllers
 
         public ActionResult Detail(string parkId)
         {
-            park park;
+            ParkDetailModel park = new ParkDetailModel();
             using (var context = new ParkSystemDatabaseEntities())
             {
-                park = context.parks.Where(p => p.parkCode == parkId).FirstOrDefault();
+                park.Park = context.parks.Where(p => p.parkCode == parkId).FirstOrDefault();
+                park.WeatherModels = context.weathers.Where(w => w.parkCode == parkId).ToList();
             }
                 return View(park);
         }

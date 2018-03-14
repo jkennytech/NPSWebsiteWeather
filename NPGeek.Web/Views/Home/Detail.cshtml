@@ -1,35 +1,68 @@
-﻿@model NPGeek.Web.Models.park
+﻿@model NPGeek.Web.Models.ViewModels.ParkDetailModel
 
 @{
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
 
 <link href="~/Content/ntlparkgeek.css" rel="stylesheet" />
-<img src="~/Content/img/parks/@(Model.parkCode.ToLower()).jpg" />
+<img src="~/Content/img/parks/@(Model.Park.parkCode.ToLower()).jpg" />
 <div>
-    <h2>@Model.parkName</h2>    
-    <p>@Model.state</p>
-    <p>@Model.acreage</p>
-    <p>@Model.elevationInFeet</p>
-    <p>@Model.milesOfTrail</p>
-    <p>@Model.numberOfCampsites</p>
-    <p>@Model.climate</p>
-    <p>@Model.yearFounded</p>
-    <p>@Model.annualVisitorCount</p>
-    <p>@Model.inspirationalQuote</p>
-    <p>@Model.inspirationalQuoteSource</p>
-    <p>@Model.parkDescription</p>
-    <p>@Model.entryFee</p>
-    <p>@Model.numberOfCampsites</p>
+    <h2>@Model.Park.parkName</h2>
+    <p>@Model.Park.state</p>
+    <p>@Model.Park.acreage</p>
+    <p>@Model.Park.elevationInFeet</p>
+    <p>@Model.Park.milesOfTrail</p>
+    <p>@Model.Park.numberOfCampsites</p>
+    <p>@Model.Park.climate</p>
+    <p>@Model.Park.yearFounded</p>
+    <p>@Model.Park.annualVisitorCount</p>
+    <p>@Model.Park.inspirationalQuote</p>
+    <p>@Model.Park.inspirationalQuoteSource</p>
+    <p>@Model.Park.parkDescription</p>
+    <p>@Model.Park.entryFee</p>
+    <p>@Model.Park.numberOfAnimalSpecies</p>
 </div>
 <div>
+
     <table>
         <tr>
             <td>
-                
+                <img src="~/Content/img/weather/@(Model.WeatherModels.FirstOrDefault().forecast).png" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                High @Model.WeatherModels.FirstOrDefault().high Low @Model.WeatherModels.FirstOrDefault().low
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Model.TodayRecommend
             </td>
         </tr>
     </table>
+
+    @foreach (var weather in Model.WeatherModels)
+    {
+        if (weather.fiveDayForecastValue != 1)
+        {
+            <table>
+                <tr>
+                    <td>
+                        <img src="~/Content/img/weather/@(weather.forecast).png" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        High @weather.high Low @weather.low
+                    </td>
+                </tr>                
+            </table>
+        }
+
+    }
+
 </div>
 
