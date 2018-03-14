@@ -19,5 +19,15 @@ namespace NPGeek.Web.Controllers
             }
                 return View(parks);
         }
+
+        public ActionResult Detail(string parkId)
+        {
+            park park;
+            using (var context = new ParkSystemDatabaseEntities())
+            {
+                park = context.parks.Where(p => p.parkCode == parkId).FirstOrDefault();
+            }
+                return View(park);
+        }
     }
 }
