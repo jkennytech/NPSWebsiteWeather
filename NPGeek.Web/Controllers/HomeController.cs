@@ -13,10 +13,10 @@ namespace NPGeek.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            List<park> parks;
+            ParkIndexModel parks = new ParkIndexModel();
             using (var context = new ParkSystemDatabaseEntities())
             {
-                parks = context.parks.ToList();
+                parks.Parks = context.parks.ToList();
             }
                 return View(parks);
         }
@@ -30,6 +30,11 @@ namespace NPGeek.Web.Controllers
                 park.WeatherModels = context.weathers.Where(w => w.parkCode == parkId).ToList();
             }
                 return View(park);
+        }
+        [HttpPost]
+        public ActionResult Index(string temperature)
+        {
+            return RedirectToAction("Index");
         }
     }
 }

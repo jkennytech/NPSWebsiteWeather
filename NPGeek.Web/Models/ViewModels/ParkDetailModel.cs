@@ -5,11 +5,11 @@ using System.Web;
 
 namespace NPGeek.Web.Models.ViewModels
 {
-    public class ParkDetailModel
+    public class ParkDetailModel : BaseViewModel
     {
-        public park Park {get; set; }
-        public List<weather> WeatherModels { get; set; }
-        public string TodayRecommend
+        public override park Park {get; set; }
+        public override List<weather> WeatherModels { get; set; }
+        public override string TodayRecommend
         {
             get
             {

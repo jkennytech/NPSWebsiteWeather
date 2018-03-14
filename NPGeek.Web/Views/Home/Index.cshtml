@@ -1,4 +1,4 @@
-﻿@model List<NPGeek.Web.Models.park>
+﻿@model NPGeek.Web.Models.ViewModels.ParkIndexModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     <link href="~/Content/ntlparkgeek.css" rel="stylesheet" />
@@ -15,7 +15,7 @@
 
     <div>
         <table>
-            @foreach (var park in Model)
+            @foreach (var park in Model.Parks)
             {
                 <tr>
                     <td><a href="@Url.Action("Detail", "Home", new { parkId = park.parkCode })"><img src="~/Content/img/parks/@(park.parkCode.ToLower()).jpg" /></td>

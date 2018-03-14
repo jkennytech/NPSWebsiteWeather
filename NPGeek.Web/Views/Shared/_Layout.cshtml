@@ -1,4 +1,4 @@
-﻿
+﻿@model NPGeek.Web.Models.ViewModels.BaseViewModel
 @{
     Layout = null;
     <link href="~/Content/ntlparkgeek.css" rel="stylesheet" />
@@ -18,6 +18,14 @@
         <ul>
             <li>@Html.ActionLink("Parks", "Index", "Home")</li>
             <li>@Html.ActionLink("Survey", "", "")</li>
+            <li class="celsius">
+                <form method="post">
+                    <select name="temperature" onchange="this.form.submit();">
+                        <option selected value="F">Fahrenheit</option>                     
+                        <option value="C">Celsius</option>
+                    </select>
+                </form>
+            </li>
         </ul>
     </nav>
     @RenderBody()
