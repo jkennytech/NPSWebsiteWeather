@@ -1,3 +1,12 @@
+-- Includes the create database and create table script
+CREATE DATABASE ParkSystemDatabase;
+
+GO
+
+USE ParkSystemDatabase;
+
+GO
+
 create table park
 (
 	parkCode varchar(10) not null,
