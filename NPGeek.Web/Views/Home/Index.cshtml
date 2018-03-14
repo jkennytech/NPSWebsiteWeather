@@ -1,6 +1,7 @@
 ﻿@model List<NPGeek.Web.Models.park>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Content/ntlparkgeek.css" rel="stylesheet" />
 }
 
 <!DOCTYPE html>
@@ -11,16 +12,16 @@
     <title>Index</title>
 </head>
 <body>
-    
+
     <div>
         <table>
             @foreach (var park in Model)
             {
                 <tr>
-                    <td><a href="@Url.Action("Detail", "Home", new { parkId = park.parkCode })"><img src="~/Content/img/parks/@(park.parkCode.ToLower()).jpg"/></td>
-                    <td><a href="@Url.Action("Detail", "Home", new { parkId = park.parkCode })">@park.parkName</a></td>
-                    <td>@park.state</td>                    
-                    <td>@park.parkDescription</td>
+                    <td><a href="@Url.Action("Detail", "Home", new { parkId = park.parkCode })"><img src="~/Content/img/parks/@(park.parkCode.ToLower()).jpg" /></td>
+                    <td><a href="@Url.Action("Detail", "Home", new { parkId = park.parkCode })">@park.parkName</a>
+                    <p>@park.state</p>
+                    <p>@park.parkDescription</p>
                 </tr>
             }
         </table>

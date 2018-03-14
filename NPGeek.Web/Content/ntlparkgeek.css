@@ -1,0 +1,46 @@
+﻿body {
+}
+
+nav {
+    margin-top: 25px;
+    background-color: seagreen
+}
+
+    nav h2, nav p {
+        color: #FFF;
+        margin-left: 25px;
+    }
+
+    nav p {
+        font-size: 12px;
+        font-style: italic;
+    }
+
+li {
+    padding-bottom: 4px;
+}
+
+    li a {
+        color: #0D118B;
+        text-decoration: none;
+        font-size: 18px;
+        text-align: center;
+    }
+
+nav ul {
+    width: 100%;
+    display: flex;    
+}
+
+    nav ul li {              
+        list-style: none;
+        text-align: center;
+        flex-grow: 1;
+        padding-top: 5px;
+        margin: 0 10px;
+        max-width: 200px;
+    }
+
+ .headerpic{
+     width: 40%;
+ }

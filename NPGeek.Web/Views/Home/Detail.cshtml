@@ -1,10 +1,11 @@
 ﻿@model NPGeek.Web.Models.park
+
 @{
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+<link href="~/Content/ntlparkgeek.css" rel="stylesheet" />
 <img src="~/Content/img/parks/@(Model.parkCode.ToLower()).jpg" />
 <div>
     <h2>@Model.parkName</h2>    
@@ -21,5 +22,14 @@
     <p>@Model.parkDescription</p>
     <p>@Model.entryFee</p>
     <p>@Model.numberOfCampsites</p>
+</div>
+<div>
+    <table>
+        <tr>
+            <td>
+                
+            </td>
+        </tr>
+    </table>
 </div>
 
