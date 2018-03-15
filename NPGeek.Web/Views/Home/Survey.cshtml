@@ -5,7 +5,7 @@
 }
 
 <h1>Please tell us how you feel</h1>
-<p>This is where words go</p>
+<p></p>
 
 <form method="post" action="@Url.Action("SubmitSurvey", "Home")" >
     <table>
@@ -27,7 +27,7 @@
                 Your Email
             </td>
             <td>
-                @Html.TextBoxFor(e => e.Survey.emailAddress, new { placeholder = "enter name" })
+                @Html.TextBoxFor(e => e.Survey.emailAddress, new { placeholder = "Enter your email" })
             </td>
         </tr>
         <tr>

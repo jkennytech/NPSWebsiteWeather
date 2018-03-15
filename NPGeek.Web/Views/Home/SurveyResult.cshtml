@@ -1,8 +1,27 @@
-﻿
+﻿@model NPGeek.Web.Models.ViewModels.SurveyResultsModel
 @{
     ViewBag.Title = "SurveyResult";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int tally = 1;
 }
 
-<h2>WE DID IT FAM</h2>
+<h2>Survey Results</h2>
+
+<table>
+    @foreach (var survey in Model.SurveyResult)
+    {
+        <tr>
+            <td>
+                <img src="~/Content/img/parks/@(survey.park.parkCode).jpg"
+            </td>
+            <td>
+                @survey.park.parkName
+            </td>
+            <td>
+                @(tally++)
+            </td>
+        </tr>
+    }
+</table>
+
 

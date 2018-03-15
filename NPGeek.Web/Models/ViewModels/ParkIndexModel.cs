@@ -7,6 +7,6 @@ namespace NPGeek.Web.Models.ViewModels
 {
     public class ParkIndexModel : BaseViewModel
     {
-        public override List<park> Parks { get; set; }
+        public List<park> Parks { get; set; }
     }
 }

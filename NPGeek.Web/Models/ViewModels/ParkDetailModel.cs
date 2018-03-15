@@ -7,9 +7,9 @@ namespace NPGeek.Web.Models.ViewModels
 {
     public class ParkDetailModel : BaseViewModel
     {
-        public override park Park {get; set; }
-        public override List<weather> WeatherModels { get; set; }
-        public override string TodayRecommend
+        public park Park {get; set; }
+        public List<weather> WeatherModels { get; set; }
+        public string TodayRecommend
         {
             get
             {

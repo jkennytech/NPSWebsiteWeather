@@ -44,7 +44,14 @@ namespace NPGeek.Web.Controllers
 
         public ActionResult SurveyResult()
         {
-            return View();
+
+            SurveyResultsModel surveyResult = new SurveyResultsModel();
+            using (var context = new ParkSystemDatabaseEntities())
+            {
+                surveyResult.SurveyResult = context.survey_result.ToList();
+                surveyResult.Parks = context.parks.ToList();
+            }
+                return View(surveyResult);
         }
 
         [HttpPost]

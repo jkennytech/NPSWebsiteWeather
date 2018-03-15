@@ -27,9 +27,9 @@
     <p>Number of species: @Model.Park.numberOfAnimalSpecies</p>
 </div>
 <div>
-    <div>
-        Today
-    </div>
+    <h2>
+        Today        
+    </h2>
     <div>
         <img src="~/Content/img/weather/@(Model.WeatherModels.FirstOrDefault().forecast).png" />
     </div>
@@ -47,15 +47,10 @@
 {
     if (weather.fiveDayForecastValue != 1)
     {
+        <img src="~/Content/img/weather/@(weather.forecast).png" />
         <div>
-            <div>
-                <img src="~/Content/img/weather/@(weather.forecast).png" />
-            </div>
-            <div>
-                <span>High @weather.high</span> <span>Low @weather.low</span>
-            </div>
+            <span>High @weather.high</span> <span>Low @weather.low</span>
         </div>
     }
-
 }
 
