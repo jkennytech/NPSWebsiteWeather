@@ -33,6 +33,17 @@ namespace NPGeek.Web.Controllers
                 park.Park = context.parks.Where(p => p.parkCode == parkId).FirstOrDefault();
                 park.WeatherModels = context.weathers.Where(w => w.parkCode == parkId).ToList();
             }
+
+            if (park.Fahrenheit != true)
+            {
+                foreach(var temp in park.WeatherModels)
+                {
+                    
+                    temp.high = (int)((temp.high - 32) * 5/9);
+                    temp.low = (int)((temp.low - 32) * 5/9);
+
+                }
+            }
             return View(park);
         }
 
