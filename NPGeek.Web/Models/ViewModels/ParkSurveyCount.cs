@@ -5,8 +5,9 @@ using System.Web;
 
 namespace NPGeek.Web.Models.ViewModels
 {
-    public class SurveyResultsModel : BaseViewModel
+    public class ParkSurveyCount
     {
-        public List<ParkSurveyCount> ParkSurveyList { get; set; }
+        public park park { get; set; }
+        public int numberOfSurveys { get; set; }
     }
 }
