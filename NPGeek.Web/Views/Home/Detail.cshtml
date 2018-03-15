@@ -22,7 +22,7 @@
             <p>Climate: @Model.Park.climate</p>
             <p>Founded: @Model.Park.yearFounded</p>
             <p>Annual visitors: @Model.Park.annualVisitorCount</p>
-            <p>Entry fee: $@Model.Park.entryFee</p>
+            <p>Entry fee: @(Model.Park.entryFee.ToString("C"))</p>
             <p>Number of species: @Model.Park.numberOfAnimalSpecies</p>
         </td>
     </tr>
