@@ -2,6 +2,16 @@
 @{
     Layout = null;
     <link href="~/Content/ntlparkgeek.css" rel="stylesheet" />
+    string f = "";
+    string c = "";
+    if(Model.Fahrenheit)
+    {
+        f = "selected";
+    }
+    else
+    {
+        c = "selected";
+    }
 }
 
 <!DOCTYPE html>
@@ -19,10 +29,10 @@
             <li>@Html.ActionLink("Parks", "Index", "Home")</li>
             <li>@Html.ActionLink("Survey", "Survey", "Home")</li>
             <li class="celsius">
-                <form method="post">
-                    <select name="temperature" onchange="this.form.submit();">
-                        <option selected value="F">Fahrenheit</option>                     
-                        <option value="C">Celsius</option>
+                <form method="post" action="@Url.Action("ChangeTemp", "Home")">
+                    <select name="type" onchange="this.form.submit();">
+                        <option @f value="f">Fahrenheit</option>
+                        <option @c value="c">Celsius</option>
                     </select>
                 </form>
             </li>
