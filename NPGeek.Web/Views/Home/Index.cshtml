@@ -19,9 +19,10 @@
             {
                 <tr>
                     <td><a href="@Url.Action("Detail", "Home", new { parkId = park.parkCode })"><img src="~/Content/img/parks/@(park.parkCode.ToLower()).jpg" /></td>
-                    <td><a href="@Url.Action("Detail", "Home", new { parkId = park.parkCode })">@park.parkName</a>
-                    <p>@park.state</p>
-                    <p>@park.parkDescription</p>
+                    <td>
+                        <a href="@Url.Action("Detail", "Home", new { parkId = park.parkCode })">@park.parkName</a>
+                        <p>@park.state</p>
+                        <p>@park.parkDescription</p>
                 </tr>
             }
         </table>

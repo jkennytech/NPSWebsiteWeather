@@ -3,66 +3,59 @@
 @{
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    
+
 }
 
 <link href="~/Content/ntlparkgeek.css" rel="stylesheet" />
 <img src="~/Content/img/parks/@(Model.Park.parkCode.ToLower()).jpg" />
 <div>
     <h2>@Model.Park.parkName</h2>
-    <p>@Model.Park.state</p>
-    <p>@Model.Park.acreage</p>
-    <p>@Model.Park.elevationInFeet</p>
-    <p>@Model.Park.milesOfTrail</p>
-    <p>@Model.Park.numberOfCampsites</p>
-    <p>@Model.Park.climate</p>
-    <p>@Model.Park.yearFounded</p>
-    <p>@Model.Park.annualVisitorCount</p>
-    <p>@Model.Park.inspirationalQuote</p>
-    <p>@Model.Park.inspirationalQuoteSource</p>
+    <p>Location: @Model.Park.state</p>
+    <p>Acreage: @Model.Park.acreage</p>
+    <p>Elevation: @Model.Park.elevationInFeet</p>
+    <p>Total trail length: @Model.Park.milesOfTrail</p>
+    <p>Number of campsites: @Model.Park.numberOfCampsites</p>
+    <p>Climate: @Model.Park.climate</p>
+    <p>Founded: @Model.Park.yearFounded</p>
+    <p>Annual visitors: @Model.Park.annualVisitorCount</p>
+    <p>
+        @Model.Park.inspirationalQuote
+        - @Model.Park.inspirationalQuoteSource
+    </p>
     <p>@Model.Park.parkDescription</p>
-    <p>@Model.Park.entryFee</p>
-    <p>@Model.Park.numberOfAnimalSpecies</p>
+    <p>Entry fee: @Model.Park.entryFee</p>
+    <p>Number of species: @Model.Park.numberOfAnimalSpecies</p>
 </div>
 <div>
+    <div>
+        Today
+    </div>
+    <div>
+        <img src="~/Content/img/weather/@(Model.WeatherModels.FirstOrDefault().forecast).png" />
+    </div>
 
-    <table>
-        <tr>
-            <td>
-                <img src="~/Content/img/weather/@(Model.WeatherModels.FirstOrDefault().forecast).png" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                High @Model.WeatherModels.FirstOrDefault().high Low @Model.WeatherModels.FirstOrDefault().low
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Model.TodayRecommend
-            </td>
-        </tr>
-    </table>
+    <div>
+        <span>High @Model.WeatherModels.FirstOrDefault().high</span>
+        <span>Low @Model.WeatherModels.FirstOrDefault().low</span>
+    </div>
 
-    @foreach (var weather in Model.WeatherModels)
+    <div>
+        @Model.TodayRecommend
+    </div>
+</div>
+@foreach (var weather in Model.WeatherModels)
+{
+    if (weather.fiveDayForecastValue != 1)
     {
-        if (weather.fiveDayForecastValue != 1)
-        {
-            <table>
-                <tr>
-                    <td>
-                        <img src="~/Content/img/weather/@(weather.forecast).png" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        High @weather.high Low @weather.low
-                    </td>
-                </tr>                
-            </table>
-        }
-
+        <div>
+            <div>
+                <img src="~/Content/img/weather/@(weather.forecast).png" />
+            </div>
+            <div>
+                <span>High @weather.high</span> <span>Low @weather.low</span>
+            </div>
+        </div>
     }
 
-</div>
+}
 
