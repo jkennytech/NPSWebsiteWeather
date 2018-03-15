@@ -177,6 +177,7 @@
     <Compile Include="Models\ViewModels\BaseViewModel.cs" />
     <Compile Include="Models\ViewModels\ParkIndexModel.cs" />
     <Compile Include="Models\ViewModels\ParkDetailModel.cs" />
+    <Compile Include="Models\ViewModels\SurveyModel.cs" />
     <Compile Include="Models\weather.cs">
       <DependentUpon>ParkSystemModel.tt</DependentUpon>
     </Compile>
@@ -195,6 +196,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
+    <Content Include="Views\Home\Survey.cshtml" />
+    <Content Include="Views\Home\SurveyResult.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

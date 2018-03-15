@@ -31,6 +31,35 @@ namespace NPGeek.Web.Controllers
             }
                 return View(park);
         }
+
+        public ActionResult Survey()
+        {
+            SurveyModel survey = new SurveyModel();
+            using (var context = new ParkSystemDatabaseEntities())
+            {
+                survey.Parks = context.parks.ToList();
+            }
+                return View(survey);
+        }
+
+        public ActionResult SurveyResult()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SubmitSurvey(survey_result survey)
+        {
+            using (var context = new ParkSystemDatabaseEntities())
+            {
+                context.survey_result.Add(survey);
+                context.SaveChanges();
+
+            }
+                return RedirectToAction("SurveyResult");
+        }
+   
+
         [HttpPost]
         public ActionResult Index(string temperature)
         {

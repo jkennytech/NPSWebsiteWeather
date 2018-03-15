@@ -1,0 +1,63 @@
+﻿@model NPGeek.Web.Models.ViewModels.SurveyModel
+@{
+    ViewBag.Title = "Survey";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Please tell us how you feel</h1>
+<p>This is where words go</p>
+
+<form method="post" action="@Url.Action("SubmitSurvey", "Home")" >
+    <table>
+        <tr>
+            <td>
+                Favorite national Park
+            </td>
+            <td>
+                <select name="Survey.parkCode">
+                    @foreach (var park in Model.Parks)
+                    {
+                        <option value="@park.parkCode">@park.parkName</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Your Email
+            </td>
+            <td>
+                @Html.TextBoxFor(e => e.Survey.emailAddress, new { placeholder = "enter name" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Select state of residence
+            </td>
+            <td>
+                <select name="Survey.state">
+                    @foreach (var park in Model.Parks)
+                    {
+                        <option value="@park.state">@park.state</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Activity level
+            </td>
+            <td>
+                <input type="radio" name="Survey.activityLevel" value="inactive" /> Inactive
+                <input type="radio" name="Survey.activityLevel" value="sedentary" /> Sedentary
+                <input type="radio" name="Survey.activityLevel" value="active" /> Active
+                <input type="radio" name="Survey.activityLevel" value="extremelyActive" /> EXTREEEEEMEEEELY Active
+
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><button>Submit</button></td>
+        </tr>
+    </table>
+</form>
