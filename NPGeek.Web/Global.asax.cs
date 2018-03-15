@@ -26,7 +26,7 @@ namespace NPGeek.Web
         {
             var kernel = new StandardKernel();
 
-            string connectionString = ConfigurationManager.ConnectionStrings["Entities"].ConnectionString;
+            //string connectionString = ConfigurationManager.ConnectionStrings["Entities"].ConnectionString;
 
             // Map Interfaces to Classes
             // kernel.Bind<>().To<>();
