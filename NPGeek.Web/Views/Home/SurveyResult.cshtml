@@ -8,14 +8,14 @@
 <h2>Survey Results</h2>
 
 <table>
-    @foreach (var survey in Model.ParkSurveyList)
+    @foreach (var park in Model.ParkSurveyList)
     {
         <tr>
             <td>
-                <img src="~/Content/img/parks/@(survey.park.parkCode).jpg"
+                <img src="~/Content/img/parks/@(park.parkCode).jpg"
             </td>
             <td>
-                @survey.park.parkName
+                @park.parkName
             </td>
             <td>
                 @(tally++)

@@ -7,6 +7,6 @@ namespace NPGeek.Web.Models.ViewModels
 {
     public class SurveyResultsModel : BaseViewModel
     {
-        public List<ParkSurveyCount> ParkSurveyList { get; set; }
+        public List<park> ParkSurveyList { get; set; }
     }
 }

@@ -7,7 +7,7 @@
 <h1>Please tell us how you feel</h1>
 <p></p>
 
-<form method="post" action="@Url.Action("SubmitSurvey", "Home")" >
+<form method="post" action="@Url.Action("Survey", "Home")" >
     <table>
         <tr>
             <td>
@@ -28,6 +28,7 @@
             </td>
             <td>
                 @Html.TextBoxFor(e => e.Survey.emailAddress, new { placeholder = "Enter your email" })
+                @Html.ValidationMessageFor(m => m.Survey.emailAddress)
             </td>
         </tr>
         <tr>
@@ -48,7 +49,7 @@
                 Activity level
             </td>
             <td>
-                <input type="radio" name="Survey.activityLevel" value="inactive" /> Inactive
+                <input type="radio" checked name="Survey.activityLevel" value="inactive" /> Inactive
                 <input type="radio" name="Survey.activityLevel" value="sedentary" /> Sedentary
                 <input type="radio" name="Survey.activityLevel" value="active" /> Active
                 <input type="radio" name="Survey.activityLevel" value="extremelyActive" /> EXTREEEEEMEEEELY Active
