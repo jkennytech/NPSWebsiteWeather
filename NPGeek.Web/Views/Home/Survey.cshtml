@@ -28,7 +28,7 @@
             </td>
             <td>
                 @Html.TextBoxFor(e => e.Survey.emailAddress, new { placeholder = "Enter your email" })
-                @Html.ValidationMessageFor(m => m.Survey.emailAddress)
+                <span class="error"> @Html.ValidationMessageFor(m => m.Survey.emailAddress) </span>
             </td>
         </tr>
         <tr>

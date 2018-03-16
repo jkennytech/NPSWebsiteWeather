@@ -27,7 +27,7 @@
         </td>
     </tr>
 </table>
-<div>
+<div class="detailInfo">
     <p>
         <b>@Model.Park.inspirationalQuote</b>
     </p>
@@ -41,7 +41,7 @@
     @(Model.Park.parkName)'s 5-Day Weather Forecast
 </h3>
 
-<table border="1"; style="border-style:solid; border-color: black">
+<table border="1" ; style="border-style:solid; border-color: black">
     <tr>
         <th>Today's Forecast</th>
         @foreach (var weather in Model.WeatherModels)
@@ -87,16 +87,16 @@
         }
     </tr>
     <tr>
-        <td>
+        <td class="wordRap">
             @Model.TodayRecommend
         </td>
         @foreach (var weather in Model.WeatherModels)
-    {
-        if (weather.fiveDayForecastValue != 1)
         {
-            <td></td>
-    }
-}
+            if (weather.fiveDayForecastValue != 1)
+            {
+                <td></td>
+            }
+        }
     </tr>
 
 </table>

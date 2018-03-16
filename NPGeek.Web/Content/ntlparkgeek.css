@@ -1,4 +1,5 @@
 ﻿body {
+    margin: 0;
 }
 
 nav {
@@ -51,4 +52,27 @@ nav ul {
 .weather{
     border-color: black;
     border-width: 3px;
+}
+
+.tempChange {
+    float: right;
+    display: inline-block;
+}
+
+.wordRap {
+    word-wrap:normal;
+    width: 250px;
+}
+
+.error {
+    color: red;
+    background-color:white;
+    
+}
+.pageContents {
+    margin-left:2%;
+    margin-right:2%;
+}
+.detailInfo{
+    width:40%;
 }
