@@ -21,13 +21,16 @@ li {
 }
 
     li a {
-        color: #0D118B;
+        color: white;
         text-decoration: none;
         font-size: 18px;
         text-align: center;
+        font-weight: bold;
+        text-shadow: 0px 1px #000000;
     }
 
 nav ul {
+    padding-top: 10px;
     width: 100%;
     display: flex;    
 }

@@ -38,6 +38,8 @@
             </li>
         </ul>
     </nav>
-    @RenderBody()
+    <div @*style="background-image:url(../../Content/img/parks/@(Model.Park.parkCode.ToLower()).jpg)"*@>
+        @RenderBody()
+    </div>
 </body>
 </html>
