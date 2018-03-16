@@ -11,7 +11,7 @@
     <tr>
         <td>
             <img src="~/Content/img/parks/@(Model.Park.parkCode.ToLower()).jpg" />
-        </td>    
+        </td>
         <td style="padding-left: 20px">
             <h2><b>@Model.Park.parkName</b></h2>
             <p>Location: @Model.Park.state</p>
@@ -49,6 +49,7 @@
                 <th>Day @weather.fiveDayForecastValue</th>
             }
         }
+
     </tr>
     <tr>
         <td>
@@ -61,6 +62,7 @@
                 <td>
                     <img src="~/Content/img/weather/@(weather.forecast).png" />
                 </td>
+
             }
         }
     <tr>
@@ -83,6 +85,11 @@
                 <td style="text-align: center">Low: @weather.low</td>
             }
         }
+    </tr>
+    <tr style="text-align:center">
+        <td>
+            @Model.TodayRecommend
+        </td>
     </tr>
 </table>
 
