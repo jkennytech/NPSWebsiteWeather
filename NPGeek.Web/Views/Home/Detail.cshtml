@@ -27,19 +27,21 @@
         </td>
     </tr>
 </table>
-<p>
-    <b>@Model.Park.inspirationalQuote</b>
-    - @Model.Park.inspirationalQuoteSource
-</p>
-<p>@Model.Park.parkDescription</p>
+<div>
+    <p>
+        <b>@Model.Park.inspirationalQuote</b>
+    </p>
+    <p style="padding-left: 100px">- @Model.Park.inspirationalQuoteSource</p>
 
+    <p>@Model.Park.parkDescription</p>
+</div>
 
 
 <h3>
     @(Model.Park.parkName)'s 5-Day Weather Forecast
 </h3>
 
-<table>
+<table border="1"; style="border-style:solid; border-color: black">
     <tr>
         <th>Today's Forecast</th>
         @foreach (var weather in Model.WeatherModels)
@@ -62,35 +64,41 @@
                 <td>
                     <img src="~/Content/img/weather/@(weather.forecast).png" />
                 </td>
-
             }
         }
     <tr>
-        <td style="text-align: center">High: @Model.WeatherModels.FirstOrDefault().high</td>
+        <td style="text-align:center">High: @Model.WeatherModels.FirstOrDefault().high</td>
         @foreach (var weather in Model.WeatherModels)
         {
             if (weather.fiveDayForecastValue != 1)
             {
-
-                <td style="text-align: center">High: @weather.high</td>
+                <td style="text-align:center">High: @weather.high</td>
             }
         }
     </tr>
     <tr>
-        <td style="text-align: center">Low: @Model.WeatherModels.FirstOrDefault().low</td>
+        <td style="text-align:center">Low: @Model.WeatherModels.FirstOrDefault().low</td>
         @foreach (var weather in Model.WeatherModels)
         {
             if (weather.fiveDayForecastValue != 1)
             {
-                <td style="text-align: center">Low: @weather.low</td>
+                <td style="text-align:center">Low: @weather.low</td>
             }
         }
     </tr>
-    <tr style="text-align:center">
+    <tr>
         <td>
             @Model.TodayRecommend
         </td>
+        @foreach (var weather in Model.WeatherModels)
+    {
+        if (weather.fiveDayForecastValue != 1)
+        {
+            <td></td>
+    }
+}
     </tr>
+
 </table>
 
 

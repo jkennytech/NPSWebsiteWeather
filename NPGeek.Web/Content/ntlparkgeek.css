@@ -47,6 +47,8 @@ nav ul {
  .headerpic{
      width: 40%;
  }
-tr{
-    width: 10%;
+
+.weather{
+    border-color: black;
+    border-width: 3px;
 }

@@ -16,7 +16,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html style="background-color:darkseagreen">
 
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -28,7 +28,7 @@
         <ul>
             <li>@Html.ActionLink("Parks", "Index", "Home")</li>
             <li>@Html.ActionLink("Survey", "Survey", "Home")</li>
-            <li class="celsius">
+            <li>
                 <form method="post" action="@Url.Action("ChangeTemp", "Home")">
                     <select name="type" onchange="this.form.submit();">
                         <option @f value="f">Fahrenheit</option>
@@ -38,8 +38,8 @@
             </li>
         </ul>
     </nav>
-    <div @*style="background-image:url(../../Content/img/parks/@(Model.Park.parkCode.ToLower()).jpg)"*@>
+    
         @RenderBody()
-    </div>
+    
 </body>
 </html>
