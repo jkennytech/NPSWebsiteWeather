@@ -1,5 +1,6 @@
 ﻿using Ninject;
 using Ninject.Web.Common.WebHost;
+using NPGeek.Web.DALS;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -26,10 +27,10 @@ namespace NPGeek.Web
         {
             var kernel = new StandardKernel();
 
-            //string connectionString = ConfigurationManager.ConnectionStrings["Entities"].ConnectionString;
+            string connectionString = @"Data Source =.\sqlexpress; Initial Catalog = ParkSystemDatabase; Integrated Security = True";
 
             // Map Interfaces to Classes
-            // kernel.Bind<>().To<>();
+            kernel.Bind<ISurveyResultDAL>().To<SurveyResultDAL>().WithConstructorArgument("connectionString", connectionString);
 
             return kernel;
         }

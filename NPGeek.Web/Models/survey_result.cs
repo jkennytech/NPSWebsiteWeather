@@ -6,8 +6,9 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+using System.ComponentModel.DataAnnotations;
 namespace NPGeek.Web.Models
+
 {
     using System;
     using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace NPGeek.Web.Models
     {
         public int surveyId { get; set; }
         public string parkCode { get; set; }
+        [Required(ErrorMessage = "Please enter a valid email")]
         public string emailAddress { get; set; }
         public string state { get; set; }
         public string activityLevel { get; set; }

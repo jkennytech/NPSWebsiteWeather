@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NPGeek.Web.DALS;
 using NPGeek.Web.Models;
 using NPGeek.Web.Models.ViewModels;
 
@@ -10,6 +11,12 @@ namespace NPGeek.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private ISurveyResultDAL dal;
+        public HomeController(ISurveyResultDAL dal)
+        {
+            this.dal = dal;
+        }
+
         // GET: Home
 
 
@@ -36,11 +43,11 @@ namespace NPGeek.Web.Controllers
 
             if (park.Fahrenheit != true)
             {
-                foreach(var temp in park.WeatherModels)
+                foreach (var temp in park.WeatherModels)
                 {
-                    
-                    temp.high = (int)((temp.high - 32) * 5/9);
-                    temp.low = (int)((temp.low - 32) * 5/9);
+
+                    temp.high = (int)((temp.high - 32) * 5 / 9);
+                    temp.low = (int)((temp.low - 32) * 5 / 9);
 
                 }
             }
@@ -58,41 +65,78 @@ namespace NPGeek.Web.Controllers
             return View(survey);
         }
 
+        [HttpPost]
+        public ActionResult Survey(SurveyModel theSurvey)
+        {
+            if (ModelState.IsValid)
+            {
+                using (var context = new ParkSystemDatabaseEntities())
+                {
+                    context.survey_result.Add(theSurvey.Survey);
+                    context.SaveChanges();
+
+                }
+                return RedirectToAction("SurveyResult");
+            }
+            else
+            {
+                SurveyModel survey = new SurveyModel();
+                survey.Fahrenheit = CheckTemp();
+                using (var context = new ParkSystemDatabaseEntities())
+                {
+                    survey.Parks = context.parks.ToList();
+                }
+                survey.Survey = theSurvey.Survey;
+                return View(survey);
+            }
+        }
+
         public ActionResult SurveyResult()
         {
             SurveyResultsModel surveyResult = new SurveyResultsModel();
-            surveyResult.ParkSurveyList = new List<ParkSurveyCount>();
+            surveyResult.ParkSurveyList = new List<park>();
             surveyResult.Fahrenheit = CheckTemp();
+
+            List<string> parkCodes = dal.GetParkCodeByVote();
+
             using (var context = new ParkSystemDatabaseEntities())
             {
-                foreach(var park in context.survey_result)
 
-                foreach (var survey in context.survey_result)
+                foreach(string code in parkCodes)
                 {
-                    
-                    ParkSurveyCount count =  new ParkSurveyCount{
-                        park = survey.park,
-                        numberOfSurveys = survey.park.parkCode.Count()
-                    };
-                       
-                    surveyResult.ParkSurveyList.Add(count);
-                    
+                    surveyResult.ParkSurveyList.Add(context.parks.Where(p => p.parkCode == code).FirstOrDefault());
                 }
+
+                //var query = from survey_result in context.survey_result
+                //            group survey_result by survey_result.parkCode into grouping
+                //            orderby grouping.Count() descending
+                //            select new { parkCode = grouping.Key, Total = grouping.Count() };
+                //foreach(var parkCodeFound in query)
+                //{
+                //    surveyResult.ParkSurveyList.Add(context.parks.Where(p => p.parkCode == parkCodeFound.ToString()).FirstOrDefault());
+                //}
             }
-            surveyResult.ParkSurveyList.OrderBy(model => model.numberOfSurveys);
+            
             return View(surveyResult);
         }
 
         [HttpPost]
         public ActionResult SubmitSurvey(survey_result survey)
         {
-            using (var context = new ParkSystemDatabaseEntities())
+            if (ModelState.IsValid)
             {
-                context.survey_result.Add(survey);
-                context.SaveChanges();
+                using (var context = new ParkSystemDatabaseEntities())
+                {
+                    context.survey_result.Add(survey);
+                    context.SaveChanges();
 
+                }
+                return RedirectToAction("SurveyResult");
             }
-            return RedirectToAction("SurveyResult");
+            else
+            {
+                return View("Survey", survey);
+            }
         }
 
         [HttpPost]
@@ -111,7 +155,7 @@ namespace NPGeek.Web.Controllers
         public bool CheckTemp()
         {
             bool fahrenheit = true;
-            if(Session["Fahrenheit"] == null)
+            if (Session["Fahrenheit"] == null)
             {
                 Session["Fahrenheit"] = true;
             }
